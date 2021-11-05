@@ -1,5 +1,5 @@
 
-export const applicationName = "Template App";
+export const applicationName = "Tool Kit - First Nations Procument Policy";
 export const applicationIcon = "mdi-cash-register";
 export const hasSidebar = true;
 export const hasSidebarClosable = false;
