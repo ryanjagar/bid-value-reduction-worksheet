@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/bid-value-reduction/'
+  publicPath: '/bid-value-reduction-worksheet/'
 };
