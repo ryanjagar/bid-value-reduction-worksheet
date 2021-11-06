@@ -39,35 +39,16 @@
 export default {
   name: "fnBVROwnership",
   props:{
-    ownership: 
-    {
-      type: Object,
-      default () {
-        return {
-          businessName: "Default",
-          percentage: ""
-        }
-      }
-    }
-      
+    ownership: Object
   },
   data: () => ({
-    
   }),
-  methods: {
-    
-  },
   watch: {
     bvrPercentage: function() {
-      console.log('waa')
       this.ownership.bvr = this.bvrPercentage
     }
   },
-  created () {
-  
-  },
   computed: {
-    
     cleanedValue: function () {
       return Number(this.ownership.value.replaceAll(",", ""))
     },
