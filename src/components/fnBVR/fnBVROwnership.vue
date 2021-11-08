@@ -1,55 +1,64 @@
+
 <template>
-  <v-card>
-    <v-card-title>Ownership</v-card-title>
-    <v-card-text>Enter the dollar value of work based on the percentage of Yukon First Nations ownership for the business or subcontracted business(es). This must exclude the amount for Yukon First Nations labour.</v-card-text>
-     <v-card-text>
+  <v-container>
+    <v-card-text>
       <v-row>
-        <v-col>
+        <v-col 
+          cols=12 
+          md=3 
+          sm=3>
           <v-text-field 
-            v-model="ownership.businessName"
-            label= "Business Name"> 
+            label= "Business Name"
+            v-model="ownership.businessName"> 
           </v-text-field>
         </v-col>
-        <v-col>
+        <v-col
+          cols=12
+          md=3
+          sm=3>
           <v-text-field 
-            v-model="ownership.percentage"
-            label= "First Nation Ownership (in %)"> 
+            label= "First Nation Ownership (in %)"
+            v-model="ownership.percentage">
           </v-text-field>
         </v-col>
-        <v-col>
+        <v-col
+          cols=12
+          md=3
+          sm=3>
           <v-text-field 
-            v-model="ownership.value"
-            label= "Estimated Value"> 
+            label= "Estimated Value"
+            v-model="ownership.value">
           </v-text-field>
         </v-col>
-        <v-col>
-          <v-text-field 
-            v-model= "bvrPercentage"
-            label= "Bid Value Reduction"> 
-          </v-text-field>
-        </v-col>
-      
-        
+        <v-col
+          cols=12
+          md=3
+          sm=3>
+            <v-text-field 
+              v-model="bvrPercentage"
+              label= "Bid Value Reduction">
+            </v-text-field>
+          </v-col>
       </v-row>
     </v-card-text>
-  </v-card>
-
+  </v-container>
 </template>
 
 <script>
-
-
 export default {
   name: "fnBVROwnership",
   props:{
-
+    ownership: Object
   },
   data: () => ({
-    ownership: {"businessName":"", "percentage": "", "value": "", "bvr": 0},
-    
   }),
-  methods: {
-    
+  mounted (){
+    this.ownership.bvr = this.bvrPercentage
+  },
+  watch: {
+    bvrPercentage: function() {
+      this.ownership.bvr = this.bvrPercentage
+    }
   },
   computed: {
     cleanedValue: function () {
@@ -78,7 +87,8 @@ export default {
       }
       else 
         return 0
-      }  
-  }
+      }
+  },
+  
 };
 </script>
