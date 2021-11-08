@@ -71,7 +71,7 @@ export default {
       })
     },
     cleanDollars(amount) {
-      return Number(amount.replace("$","").replace("%","").replace(",", ""))
+      return Number(amount.replaceAll("$","").replaceAll(",", ""))
     }
 
   },
@@ -81,7 +81,7 @@ export default {
        return this.formatDollars(this.cleanDollars(this.totalBidValue) - this.cleanDollars(this.totalBVROwnership))
     },
     totalBVROwnership: function () {
-      const a = this.owners.map(item => Number(item.bvr.replace("$", "")))
+      const a = this.owners.map(item => Number(item.bvr.replaceAll("$", "")))
                            .reduce((prev, curr) => prev + curr, 0)
       
       return this.formatDollars(a)
