@@ -12,7 +12,7 @@
         >
         <v-icon>mdi-close</v-icon>
       </v-btn>
-</v-system-bar>
+    </v-system-bar>
     <v-card-text>
       <v-row class="">
       
