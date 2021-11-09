@@ -4,7 +4,7 @@
   <v-card-title class="text-h4" >Bid Reduction Worksheet</v-card-title>
   <v-card-text> -->
 
-  <v-card-title> Adjusted Bid Value {{adjustedBidValue}} <v-spacer> </v-spacer> Unadjusted Bid Value {{totalBidValue}} <v-spacer> </v-spacer>  Savings {{totalBVROwnership}} </v-card-title>
+  <v-card-title> Adjusted Bid Value {{adjustedBidValue}} <v-spacer> </v-spacer> Unadjusted Bid Value {{totalBidValue}} <v-spacer> </v-spacer>  Savings {{totalBidValueReduction}} </v-card-title>
   <v-card>
   <v-card-title>Ownership</v-card-title>
     <v-card-text>Enter the dollar value of work based on the percentage of Yukon First Nations ownership for the business or subcontracted business(es). This must exclude the amount for Yukon First Nations labour.</v-card-text>
@@ -35,7 +35,6 @@
   <v-card class="mt-5">
   <v-card-title>Location</v-card-title>
   <v-card-text>Enter the dollar value committted to be performed by Yukon First Nations businesses that have their primary operations located in the Yukon community where the work is taking place. Businesses with their primary operations in Whitehorse are not eligible. This must exclude the amount for Yukon First Nations labour.</v-card-text>
-
   <div 
     v-for="(location, index) in locations"
     :key="index">
@@ -115,7 +114,6 @@ export default {
 },
     addOwnership: function () {
       this.owners.push({"businessName":"", "percentage": "", "value": "", "bvr": "" })
-    
     },
     addLocation: function () {
       this.locations.push({"businessName":"", "community": "", "value": "", "bvr": ""})
@@ -134,22 +132,41 @@ export default {
   computed: {
     adjustedBidValue: function () {
      
-       return this.formatDollars(this.cleanDollars(this.totalBidValue) - this.cleanDollars(this.totalBVROwnership))
+       return this.formatDollars(this.cleanDollars(this.totalBidValue) - this.cleanDollars(this.totalBidValueReduction))
     },
     totalBVROwnership: function () {
       if (this.owners[0].bvr) {
-      const a = this.owners.map(item => Number(item.bvr.replaceAll("$", "")))
+      const a = this.owners.map(item => this.cleanDollars(item.bvr))
                            .reduce((prev, curr) => prev + curr, 0)
       
-      return this.formatDollars(a)
+        return this.formatDollars(a)
       }
       return this.formatDollars(0)
     
     },
+    totalBVRLocation: function () {
+      if (this.locations[0].bvr) {
+      const a = this.locations.map(item => this.cleanDollars(item.bvr))
+                           .reduce((prev, curr) => prev + curr, 0)
+      
+        return this.formatDollars(a)
+      }
+      return this.formatDollars(0)
+    
+    },
+    totalBidValueReduction: function (){
+      return this.formatDollars(
+        this.cleanDollars(this.totalBVROwnership) + this.cleanDollars(this.totalBVRLocation)
+      )
+    },
+
     totalBidValue: function () {
-      const a= this.owners.map(item => Number(item.value))
+      const a= this.owners.map(item => this.cleanDollars(item.value))
                           .reduce((prev, curr) => prev + curr, 0)
-      return this.formatDollars(a)
+      const b = this.locations.map(item => this.cleanDollars(item.value))
+                          .reduce((prev, curr) => prev + curr, 0)
+     
+      return this.formatDollars(a+b)
     }
   }
 };
