@@ -1,38 +1,51 @@
 <template>
-  <v-card>
-  <v-card-title>Location</v-card-title>
-  <v-card-text>Enter the dollar value committted to be performed by Yukon First Nations businesses that have their primary operations located in the Yukon community where the work is taking place. Businesses with their primary operations in Whitehorse are not eligible. This must exclude the amount for Yukon First Nations labour.</v-card-text>
+  <v-container>
+  
     <v-card-text>
       <v-row>
-        <v-col>
+        <v-col 
+          cols=12 
+          md=3
+          sm=3> 
           <v-text-field 
             v-model="location.businessName"
             label= "Business Name"> 
           </v-text-field>
         </v-col>
-        <v-col>
+        <v-col 
+          cols=12 
+          md=3
+          sm=3> 
           <v-text-field 
-            v-model="location.name"
+            v-model="location.community"
             label= "Location"> 
           </v-text-field>
         </v-col>
-        <v-col>
+        <v-col 
+          cols=12 
+          md=3
+          sm=3> 
           <v-text-field 
         v-model="location.value"
         label= "Estimated Value"> 
       </v-text-field>
         </v-col>
-        <v-col>
+        <v-col 
+          cols=12 
+          md=3
+          sm=3> 
           <v-text-field 
             v-model= "bvrPercentage"
-            label= "Bid Value Reduction"> 
+            label= "Bid Value Reduction"
+            readonly
+            solo-inverted>> 
           </v-text-field>
         </v-col>
       
         
       </v-row>
     </v-card-text>
-  </v-card>
+  </v-container>
 
 </template>
 
@@ -42,10 +55,10 @@
 export default {
   name: "fnBVRLocation",
   props:{
-
+    location: Object
   },
   data: () => ({
-    location: {"businessName":"", "name": "", "value": "", "bvr": 0.05 },
+    //location: {"businessName":"", "name": "", "value": "", "bvr": 0.05 },
     
   }),
   methods: {

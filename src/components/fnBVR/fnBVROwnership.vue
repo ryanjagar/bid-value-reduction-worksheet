@@ -36,7 +36,9 @@
           sm=3>
             <v-text-field 
               v-model="bvrPercentage"
-              label= "Bid Value Reduction">
+              label= "Bid Value Reduction"
+              readonly
+              solo-inverted>
             </v-text-field>
           </v-col>
       </v-row>

@@ -3,7 +3,9 @@
   <!-- <v-card>
   <v-card-title class="text-h4" >Bid Reduction Worksheet</v-card-title>
   <v-card-text> -->
+
   <v-card-title> Adjusted Bid Value {{adjustedBidValue}} <v-spacer> </v-spacer> Unadjusted Bid Value {{totalBidValue}} <v-spacer> </v-spacer>  Savings {{totalBVROwnership}} </v-card-title>
+  <v-card>
   <v-card-title>Ownership</v-card-title>
     <v-card-text>Enter the dollar value of work based on the percentage of Yukon First Nations ownership for the business or subcontracted business(es). This must exclude the amount for Yukon First Nations labour.</v-card-text>
   
@@ -13,10 +15,53 @@
        <fnBVROwnership 
       :ownership.sync='owners[index]'/>
     </div>  
-  <v-card-actions> <v-spacer> </v-spacer> Add a line (replace with an icon) </v-card-actions>
+  <v-card-actions> <v-spacer> </v-spacer> 
+  <v-fab-transition>
+              <v-btn
+                
+                color="#0097a9"
+                dark
+                absolute
+                bottom
+                right
+                fab
+              >
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </v-fab-transition>
+            </v-card-actions>
+  </v-card>
+  <v-card class="mt-5">
+  <v-card-title>Location</v-card-title>
+  <v-card-text>Enter the dollar value committted to be performed by Yukon First Nations businesses that have their primary operations located in the Yukon community where the work is taking place. Businesses with their primary operations in Whitehorse are not eligible. This must exclude the amount for Yukon First Nations labour.</v-card-text>
 
+
+<div 
+      v-for="(location, index) in locations"
+      :key="index">
+       <fnBVRLocation
+      :location.sync='locations[index]'/>
+    </div>  
+  <v-card-actions> <v-spacer> </v-spacer> 
+  
+  <v-fab-transition>
+              <v-btn
+                
+                color="#0097a9"
+                dark
+                absolute
+                bottom
+                right
+                fab
+              >
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </v-fab-transition>
+            </v-card-actions>
+ 
+  </v-card>
   <fnBVRLocation
-  v-show="true" />
+  v-show="false" />
   <fnBVRLabour
   v-show="true" />
   <!-- </v-card-text>
@@ -48,8 +93,7 @@ export default {
       {"businessName":"AAAA", "percentage": "55", "value": "3500", "bvr": "" },
       {"businessName":"BBB", "percentage": "75", "value": "2500", "bvr": "" }
     ],
-    locations: [],
-    jack: {"businessName":"AAAA", "percentage": "", "value": "", "bvr": "" },
+    locations: [{"businessName":"Acme", "community": "Dawson City", "value": "", "bvr": ""}],
     labour: {"value": 0, "bvr": 0.05 },
     ownerInstance: {},
     locationInstance: {},
