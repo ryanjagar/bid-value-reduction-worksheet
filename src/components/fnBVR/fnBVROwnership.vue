@@ -1,6 +1,20 @@
 
 <template>
   <v-container>
+    <v-app-bar
+      flat
+      dense
+      color="rgba(0, 0, 0, 0)"
+       class="d-print-none"
+    >
+      <v-spacer></v-spacer>
+      <v-btn
+        icon
+        @click="$emit('delete')"
+        >
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+          </v-app-bar>
     <v-card-text>
       <v-row>
         <v-col 
