@@ -62,7 +62,7 @@
   </v-card>
   
   <fnBVRLabour
-  v-show="true" />
+  :labour.sync='labour' />
   <!-- </v-card-text>
 </v-card> -->
 </v-container>
@@ -94,9 +94,7 @@ export default {
     locations: [
       {"businessName":"", "community": "", "value": "", "bvr": ""},
       ],
-    labour: {"value": 0, "bvr": 0.05 },
-    ownerInstance: {},
-    locationInstance: {},
+    labour: {"value": "", "bvr": "" },
     // Location formula
     // If outside Whitehorse and on title
     // BVR += 5% 
@@ -155,8 +153,14 @@ export default {
     
     },
     totalBidValueReduction: function (){
+      var bvrLabour = 0
+      if (this.labour.bvr){
+        bvrLabour = this.cleanDollars(this.labour.bvr)
+      }
       return this.formatDollars(
-        this.cleanDollars(this.totalBVROwnership) + this.cleanDollars(this.totalBVRLocation)
+        this.cleanDollars(this.totalBVROwnership) + 
+        this.cleanDollars(this.totalBVRLocation) + 
+        bvrLabour
       )
     },
 
@@ -165,8 +169,11 @@ export default {
                           .reduce((prev, curr) => prev + curr, 0)
       const b = this.locations.map(item => this.cleanDollars(item.value))
                           .reduce((prev, curr) => prev + curr, 0)
-     
-      return this.formatDollars(a+b)
+      var c = 0
+      if (this.labour.value) {
+        c = this.cleanDollars(this.labour.value)
+      }
+      return this.formatDollars(a+b+c)
     }
   }
 };
