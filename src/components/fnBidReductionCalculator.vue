@@ -43,7 +43,7 @@
       :location.sync='locations[index]'/>
     </div>  
   <v-card-actions> <v-spacer> </v-spacer> 
-  
+  {{locations[0]}}
   <v-fab-transition>
               <v-btn
                 
@@ -60,8 +60,7 @@
             </v-card-actions>
  
   </v-card>
-  <fnBVRLocation
-  v-show="false" />
+  
   <fnBVRLabour
   v-show="true" />
   <!-- </v-card-text>
@@ -90,14 +89,14 @@ export default {
     // if owner is >= 75 then BVR = 10%
     // if owner is >= 100 then BVR = 15%
     owners: [
-      {"businessName":"AAAA", "percentage": "55", "value": "3500", "bvr": "" },
-      {"businessName":"BBB", "percentage": "75", "value": "2500", "bvr": "" }
+      {"businessName":"", "percentage": "", "value": "", "bvr": "" },
     ],
-    locations: [{"businessName":"Acme", "community": "Dawson City", "value": "", "bvr": ""}],
+    locations: [
+      {"businessName":"", "community": "", "value": "", "bvr": ""},
+      ],
     labour: {"value": 0, "bvr": 0.05 },
     ownerInstance: {},
     locationInstance: {},
-    businessName: "aName" 
     // Location formula
     // If outside Whitehorse and on title
     // BVR += 5% 
@@ -125,10 +124,13 @@ export default {
        return this.formatDollars(this.cleanDollars(this.totalBidValue) - this.cleanDollars(this.totalBVROwnership))
     },
     totalBVROwnership: function () {
+      if (this.owners[0].bvr) {
       const a = this.owners.map(item => Number(item.bvr.replaceAll("$", "")))
                            .reduce((prev, curr) => prev + curr, 0)
       
       return this.formatDollars(a)
+      }
+      return this.formatDollars(0)
     
     },
     totalBidValue: function () {
