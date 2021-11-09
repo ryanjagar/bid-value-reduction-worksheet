@@ -25,6 +25,7 @@
                 bottom
                 right
                 fab
+                @click="addOwnership()"
               >
                 <v-icon>mdi-plus</v-icon>
               </v-btn>
@@ -36,28 +37,27 @@
   <v-card-text>Enter the dollar value committted to be performed by Yukon First Nations businesses that have their primary operations located in the Yukon community where the work is taking place. Businesses with their primary operations in Whitehorse are not eligible. This must exclude the amount for Yukon First Nations labour.</v-card-text>
 
 
-<div 
-      v-for="(location, index) in locations"
-      :key="index">
-       <fnBVRLocation
-      :location.sync='locations[index]'/>
-    </div>  
-  <v-card-actions> <v-spacer> </v-spacer> 
-  {{locations[0]}}
-  <v-fab-transition>
-              <v-btn
-                
-                color="#0097a9"
-                dark
-                absolute
-                bottom
-                right
-                fab
-              >
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-            </v-fab-transition>
-            </v-card-actions>
+  <div 
+    v-for="(location, index) in locations"
+    :key="index">
+      <fnBVRLocation
+    :location.sync='locations[index]'/>
+  </div>  
+    <v-card-actions> <v-spacer> </v-spacer> 
+      <v-fab-transition>
+        <v-btn
+          color="#0097a9"
+          dark
+          absolute
+          bottom
+          right
+          fab
+          @click="addLocation()"
+        >
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </v-fab-transition>
+    </v-card-actions>
  
   </v-card>
   
@@ -107,6 +107,12 @@ export default {
  
   },
   methods: {
+    addOwnership: function () {
+      this.owners.push({"businessName":"", "percentage": "", "value": "", "bvr": "" })
+    },
+    addLocation: function () {
+      this.locations.push({"businessName":"", "community": "", "value": "", "bvr": ""})
+    },
     formatDollars(amount) {
       return amount.toLocaleString('en-US', {
         style: 'currency',
