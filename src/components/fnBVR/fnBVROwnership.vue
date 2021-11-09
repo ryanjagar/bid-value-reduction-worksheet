@@ -1,12 +1,10 @@
 
 <template>
   <v-container>
-    <v-app-bar
-      flat
-      dense
-      color="rgba(0, 0, 0, 0)"
-       class="d-print-none"
-    >
+    <v-system-bar
+      class="d-print-none d-flex d-sm-none"
+      height="1"
+      lights-out>   
       <v-spacer></v-spacer>
       <v-btn
         icon
@@ -14,9 +12,10 @@
         >
         <v-icon>mdi-close</v-icon>
       </v-btn>
-          </v-app-bar>
+</v-system-bar>
     <v-card-text>
-      <v-row>
+      <v-row class="">
+      
         <v-col 
           cols=12 
           md=3 
@@ -28,10 +27,10 @@
         </v-col>
         <v-col
           cols=12
-          md=3
-          sm=3>
+          md=2
+          sm=2>
           <v-text-field 
-            label= "First Nation Ownership (in %)"
+            label= "Ownership (in %)"
             v-model="ownership.percentage">
           </v-text-field>
         </v-col>
@@ -54,6 +53,27 @@
               readonly
               solo-inverted>
             </v-text-field>
+          </v-col>
+          <v-col
+           
+            cols=1>
+     
+      
+     <v-btn
+        class="d-none d-sm-flex"
+        color="grey"
+       
+          small
+          dark
+          icon
+          top
+          right
+        
+        @click="$emit('delete')"
+        >
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+     
           </v-col>
       </v-row>
     </v-card-text>
