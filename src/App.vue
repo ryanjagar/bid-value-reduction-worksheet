@@ -9,7 +9,8 @@
       style="left: 0; border-bottom: 3px #f3b228 solid"
     >
       <!-- <v-icon color="#f3b228" class="mr-5">{{ applicationIcon }}</v-icon> -->
-      <img src="<%= BASE_URL %>yukon.svg" style="margin: -8px 155px 0 0" height="44" />
+      <!-- <img src="./yukon.svg" style="margin: -8px 155px 0 0" height="44" /> -->
+      <v-img :src="require('./assets/logo.svg')" style="margin: -8px 155px 0 0" height="44" />
       <v-toolbar-title>
         <span style="font-weight: 700">{{ applicationName }}</span>
 
