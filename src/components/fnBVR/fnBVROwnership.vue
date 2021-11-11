@@ -112,7 +112,7 @@ export default {
         return null
     },
     ownershipBVR: function (){
-      if (this.ownership.percentage == 100){
+      if (this.ownership.percentage >= 100){
         return 0.15
       }
       else if (this.ownership.percentage >= 75){
