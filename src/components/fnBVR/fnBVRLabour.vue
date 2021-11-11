@@ -3,9 +3,10 @@
   <v-card class="mt-5">
     <v-card-title>Labour</v-card-title>
     <v-card-text>Enter the dollar value of the work that will be paid to Yukon First Nations employees for labour. This must exclude the amount submitted for ownership and business location. Value-driven procurements must match the amount submitted for labour levels within the proposal.</v-card-text>
+    <v-container>
     <v-card-text>
       <v-row>
-        
+        <v-spacer> </v-spacer>
         <v-col 
           cols=12 
           md=3 
@@ -28,9 +29,14 @@
             </v-text-field>
         
         </v-col>
+        <v-col
+        cols="1"
+        >
+        </v-col>
         
       </v-row>
-    </v-card-text>  
+    </v-card-text>
+    </v-container>  
   </v-card>
 
 </template>

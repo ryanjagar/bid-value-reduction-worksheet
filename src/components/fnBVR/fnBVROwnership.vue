@@ -1,21 +1,24 @@
 
 <template>
   <v-container>
-    <v-system-bar
-      class="d-print-none d-flex d-sm-none"
-      height="1"
-      lights-out>   
-      <v-spacer></v-spacer>
-      <v-btn
+    <v-card-text>
+      <v-row 
+        class="d-print-none d-flex d-sm-none"
+        >
+        <v-spacer></v-spacer>
+        <v-col
+        cols=1
+        class="my-n5 pa-0"
+        v-show="showDelete">
+        <v-btn
         icon
         @click="$emit('delete')"
         >
         <v-icon>mdi-close</v-icon>
       </v-btn>
-    </v-system-bar>
-    <v-card-text>
+        </v-col>
+      </v-row>
       <v-row class="">
-      
         <v-col 
           cols=12 
           md=3 
@@ -55,25 +58,21 @@
             </v-text-field>
           </v-col>
           <v-col
-           
-            cols=1>
-     
-      
-     <v-btn
-        class="d-none d-sm-flex"
-        color="grey"
-       
-          small
-          dark
-          icon
-          top
-          right
-        
-        @click="$emit('delete')"
-        >
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-     
+            cols=1
+            v-show="showDelete">
+           <v-btn
+            class="d-none d-sm-flex"
+            color="grey"
+            small
+            dark
+            icon
+            top
+            right
+            @click="$emit('delete')"
+            v-show="false"
+            >
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
           </v-col>
       </v-row>
     </v-card-text>
@@ -84,7 +83,8 @@
 export default {
   name: "fnBVROwnership",
   props:{
-    ownership: Object
+    ownership: Object,
+    showDelete: Boolean
   },
   data: () => ({
   }),

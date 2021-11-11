@@ -10,9 +10,11 @@
     <v-card-text>Enter the dollar value of work based on the percentage of Yukon First Nations ownership for the business or subcontracted business(es). This must exclude the amount for Yukon First Nations labour.</v-card-text>
     <div 
       v-for="(owner, index) in owners"
-      :key="index">
+      :key="index"
+      class="my-n3 ">
        <fnBVROwnership 
       :ownership.sync='owners[index]'
+      :showDelete='isMultiple(owners)'
       @delete="removeElement(owners, index)"/>
     </div>  
     <v-card-actions> <v-spacer> </v-spacer> 
@@ -36,10 +38,12 @@
   <v-card-title>Location</v-card-title>
   <v-card-text>Enter the dollar value committted to be performed by Yukon First Nations businesses that have their primary operations located in the Yukon community where the work is taking place. Businesses with their primary operations in Whitehorse are not eligible. This must exclude the amount for Yukon First Nations labour.</v-card-text>
   <div 
+    class="my-n3"
     v-for="(location, index) in locations"
     :key="index">
       <fnBVRLocation
     :location.sync='locations[index]'
+    :showDelete='isMultiple(locations)'
     @delete="removeElement(locations, index)"/>
   </div>  
     <v-card-actions> <v-spacer> </v-spacer> 
@@ -105,6 +109,13 @@ export default {
  
   },
   methods: {
+    isMultiple: function (array) {
+      console.log(array.length)
+      if (array.length > 1){
+        return true;
+      }
+      return false
+    },
     removeElement: function (array, elem) {
     if (array.length > 1) {
         array.splice(elem, 1);
