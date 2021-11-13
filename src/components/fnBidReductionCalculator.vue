@@ -110,7 +110,6 @@ export default {
   },
   methods: {
     isMultiple: function (array) {
-      console.log(array.length)
       if (array.length > 1){
         return true;
       }
