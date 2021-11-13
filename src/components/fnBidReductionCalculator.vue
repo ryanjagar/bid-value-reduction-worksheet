@@ -134,7 +134,10 @@ export default {
       })
     },
     cleanDollars(amount) {
-      return Number(amount.replaceAll("$","").replaceAll(",", ""))
+      if (amount){
+        return Number(amount.replaceAll("$","").replaceAll(",", ""))
+      }
+      return 0
     }
 
   },
