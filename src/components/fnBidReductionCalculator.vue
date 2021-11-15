@@ -110,7 +110,6 @@ export default {
   },
   methods: {
     isMultiple: function (array) {
-      console.log(array.length)
       if (array.length > 1){
         return true;
       }
@@ -134,7 +133,10 @@ export default {
       })
     },
     cleanDollars(amount) {
-      return Number(amount.replaceAll("$","").replaceAll(",", ""))
+      if (amount){
+        return Number(amount.replaceAll("$","").replaceAll(",", ""))
+      }
+      return 0
     }
 
   },
